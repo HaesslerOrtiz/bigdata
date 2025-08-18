@@ -1,0 +1,6 @@
+# Entornos virtuales
+big_data/
+
+# Compilados de python
+__pycache__/
+.pytest_cache/

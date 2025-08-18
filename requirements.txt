@@ -1,0 +1,8 @@
+# Librería principal para análisis de datos y lectura/escritura de Excel
+pandas  
+# Motor para leer y escribir archivos .xlsx (Excel moderno)
+openpyxl
+# Motor adicional para leer archivos .xls (Excel antiguo)
+xlrd  
+# Librería para gráficos y visualizaciones en 2D (histogramas, scatter, etc.)
+matplotlib
