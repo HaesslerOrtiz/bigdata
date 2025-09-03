@@ -57,7 +57,7 @@
 
 
 % ===== Título y autoría =====
-\title{\textbf{Informe del análisis de datos para el dataset ``Adult''}}
+\title{\textbf{Informe del análisis de datos para el dataset ``Adult Income''}}
 \author{Haessler Joan Ortiz Moncada \\[0.5cm]
         Universidad Distrital Francisco José de Caldas \\
         Facultad de Ingeniería \\
@@ -69,19 +69,31 @@
 \maketitle
 
 \section{Introducción}
-El \textit{Adult Income Dataset}, también conocido como \textit{Census Income Dataset}, 
-proviene del Censo de 1994 de Estados Unidos. El objetivo típico de estudio es predecir 
-si una persona gana más de \num{50000} dólares anuales a partir de características demográficas 
-y socioeconómicas. Es un conjunto de datos ampliamente utilizado en problemas de clasificación supervisada.
+Para este informe se utilizó el  \texttt{Adult Income Dataset}, también conocido como Census Income Dataset,
+este Dataset proviene del censo de Estados Unidos de 1994, y es amplimante usado en ejercicios de clasificación. 
+El objetivo de este informe es predecir si una persona gana más de \num{50000} dólares anuales a partir 
+de características demográficas y socioeconómicas, utilizando diferentes modelos de clasificación, diversas 
+métricas de evaluación y variando los parámetros de los modelos implementados, admemás de docuemntar y discutir 
+los resultados obtenidos, así como familiarizar al estudiante con la paltaforma Colab y el lenguaje de Python para 
+el análisis de datos.
 
 \section{Metodología}
-Se emplearon Google Colab y Python con las librerías \texttt{pandas}, \texttt{scikit-learn}, 
-\texttt{matplotlib} y \texttt{seaborn}. Los resultados, figuras y tablas se documentan en \LaTeX.
+Este informe se desarrolla conforme a lo establecido en el \texttt{Assignment \#2}, aunque con algunas variaciones 
+en la presentación. En aquel caso se solicitaba que todo el trabajo se realizara en un único documento o 
+archivo de Colab; en cambio, aquí se optó por efectuar la codificación en dicho entorno y presentar los 
+hallazgos y el compendio de resultados mediante un informe escrito. Se emplearon principalmente Google Colab y Python, 
+haciendo uso de los paquetes \texttt{os}, \texttt{pandas}, \texttt{scikit-learn}, \texttt{matplotlib} y \texttt{seaborn}.
+
+Básicamente, lo que se hizo fue ir desarrollando en Colab el código correspondiente y de manera 
+paralela documentar los hallazgos y resultados en este informe. Por último, el código fuente implementado en Colab, 
+los datos utilizados y el archivo de este informe se encuentran en la carpeta taller\_3 del repositorio de 
+GitHub \href{https://github.com/HaesslerOrtiz/bigdata}{bigdata\_repositorio}.
 
 \section{Descripción del dataset}
 El conjunto de datos contiene \num{48842} registros, distribuidos en dos archivos: 
 \texttt{adult.data} (con \num{32561} instancias) y \texttt{adult.test} (con \num{16281} instancias). 
-Incluye 14 características y una variable objetivo denominada \texttt{income}. 
+Incluye 14 características y una variable objetivo denominada \texttt{income}. El dataset se descargó de 
+\href{https://archive.ics.uci.edu/dataset/2/adult}{Adult Income Dataset}.
 La \Cref{tab:adult_attributes} presenta los campos y su tipo.
 
 \subsection{Atributos del dataset}
@@ -114,13 +126,13 @@ La \Cref{tab:adult_attributes} presenta los campos y su tipo.
 Para este informe se unificaron ambos archivos en un único \emph{DataFrame}. La división 
 original probablemente busca facilitar la replicación de resultados entre entrenamiento y 
 prueba. El repositorio incluye, además, el dominio de cada característica y documentación 
-de tipos.
+de tipos. El dataset se proyectó en un archivo Excel.
 
 \section{Resultados y análisis}
 A continuación se sigue la estructura del \textit{Assignment \#2} del curso de Big Data.
 
 \begin{enumerate}
-   \item \textbf{Q1: Exploración y análisis de datos}
+   \item \textbf{Exploración y análisis de datos}
     \begin{itemize}
       \item \textbf{Estadísticas descriptivas} para variables numéricas:
       \begin{table}[H]
@@ -306,7 +318,7 @@ A continuación se sigue la estructura del \textit{Assignment \#2} del curso de 
     La \Cref{fig:income_hist} muestra un claro desequilibrio a favor de la categoría \texttt{<=50K}, lo cual puede afectar el desempeño de 
     los modelos de clasificación.
 
-    \item \textbf{Q2: Limpieza y preprocesamiento de datos}
+    \item \textbf{Limpieza y preprocesamiento de datos}
     \begin{itemize}
       \item \textbf{Valores nulos.} No se encontraron valores faltantes.
       
@@ -333,7 +345,7 @@ A continuación se sigue la estructura del \textit{Assignment \#2} del curso de 
       \item \textbf{Tratamiento de faltantes.} Al no haber valores nulos, no fue necesaria la imputación ni eliminación adicional.
     \end{itemize}
 
-    \item \textbf{Q3: División del dataset}
+    \item \textbf{División del dataset}
     \begin{itemize}
       \item \textbf{Split 80/20.} Se dividió en entrenamiento (80\,\%) y prueba (20\,\%) preservando la proporción de \texttt{income}.
       \item \textbf{Balance por clase.} La \Cref{tab:income_proportion} muestra que la proporción por clase es prácticamente idéntica en ambos conjuntos.
@@ -371,7 +383,7 @@ A continuación se sigue la estructura del \textit{Assignment \#2} del curso de 
       \end{table}
     \end{itemize}
 
-    \item \textbf{Q4: Correlaciones y relaciones}
+    \item \textbf{Correlaciones y relaciones}
     \begin{itemize}
       \item \textbf{Matriz de correlación.}
       \begin{figure}[H]
@@ -637,7 +649,7 @@ A continuación se sigue la estructura del \textit{Assignment \#2} del curso de 
 
         \textbf{KNN}
         \begin{itemize}
-            \item \textbf{Ventajas:} implementación simple; no requiere supuestos estadísticos; buen desempeño con valores intermedios de $k$.
+            \item \textbf{Ventajas:} implementación simple, no requiere supuestos estadísticos; buen desempeño con valores intermedios de $k$.
             \item \textbf{Desventajas:} sensible a la escala y al desbalance de clases; bajo recall en la clase >50K; elevado costo computacional en predicción.
         \end{itemize}
 
@@ -645,10 +657,114 @@ A continuación se sigue la estructura del \textit{Assignment \#2} del curso de 
         desempeño sólido y balanceado entre las dos clases.
       \end{itemize}
 
+      \textbf{Clasificador de mayor votación.}
+      Los tres clasificadores con mejor rendimiento identificados son:
+
+      \begin{enumerate}
+        \item Árbol de Decisión con hiperparámetros optimizados (max\_depth=10, min\_samples\_split=20)
+        \item k-NN con k óptimo (k=25, basado en la exploración)
+        \item El mejor clasificador basado en reglas (regresión logística) de los pares de variables (educacion\-num, capital\-gain)
+      \end{enumerate}
+
+      Al ejecutar el modelo de mayor votación se tienen los siguientes resultados:
+
+      \begin{table}[H]
+        \centering
+        \small
+          \begin{tabular}{lcccc}
+          \toprule
+          \textbf{Clase} & \textbf{Precisión} & \textbf{Recall} & \textbf{F1} & \textbf{Soporte} \\
+          \midrule
+          $\leq 50$K & 0.81 & 0.99 & 0.89 & 7422 \\
+          $>50$K     & 0.90 & 0.28 & 0.43 & 2336 \\
+          \midrule
+          \textbf{Accuracy} & \multicolumn{4}{c}{\textbf{0.8215}} \\
+          \midrule
+          \textbf{Promedio macro}     & 0.86 & 0.64 & 0.66 & 9758 \\
+          \textbf{Promedio ponderado} & 0.84 & 0.82 & 0.78 & 9758 \\
+          \bottomrule
+          \end{tabular}
+        \caption{Desempeño del clasificador de mayor votación}
+        \label{tab:clasificador_major_vote}
+      \end{table}
+
+      El clasificador alcanza una precisión global de 82.15\% en el conjunto de prueba, lo que indica un desempeño correcto en términos generales. 
+      En la clase \(\leq 50\text{K}\) se observa una recuperación prácticamente completa (recall = 0.99) con una precisión de 0.81 y F1 de 0.89; 
+      esto sugiere que el modelo identifica casi todos los casos de ingresos no superiores a 50K, aun cuando comete algunos falsos positivos hacia 
+      esta clase. Para la clase \(>50\text{K}\) se presenta el patrón complementario: una precisión muy alta (0.90) y un recall moderado-bajo (0.28), 
+      con F1 de 0.43. En términos prácticos, cuando el modelo predice \(>50\text{K}\) suele acertar, pero deja sin detectar una proporción importante 
+      de casos verdaderamente positivos. Los promedios macro (F1 = 0.66) y ponderado (F1 = 0.78) reflejan el compromiso entre ambas clases: buen 
+      rendimiento general con fuerte sesgo hacia \(\leq 50\text{K}\) en la recuperación. Para mejorar la cobertura de \(>50\text{K}\) puede 
+      considerarse un ajuste del umbral de decisión y/o la incorporación de ponderación de clases, asumiendo un incremento esperado en falsos 
+      positivos de la clase alta.
+
+      \item \textbf{Comparación con los modelos.}
+      
+      En conjunto, el ensamble por votación no supera al mejor componente (árbol optimizado) y, además, hereda el sesgo de ``alta precisión y 
+      bajo \textit{recall}'' del modelo basado en reglas (regresión logística). Dado que el árbol optimizado ofrece la mejor cobertura de \(>50\,\text{K}\) con el 
+      mejor desempeño global, una alternativa más efectiva sería usar \textit{soft voting} con pesos mayores para el árbol, o bien ajustar el umbral 
+      del ensamble para incrementar el \textit{recall} de \(>50\,\text{K}\) (asumiendo el costo de más falsos positivos).
+
+      \item \textbf{Variando el tamaño del dataset de prueba.}
+      
+      De acuerdo con lo indicado por el \texttt{Assignment \#2}, se procedió a realizar el mismo ejercicio de clasificación que se ha realizado 
+      hasta el momento con cada uno de los modelos propuestos (Regresión logística, Arbol de Decisión, knn y mayor Votación), pero variando el tamaño 
+      (0.6, 0.4, 0.2, 0.1) del dataset de prueba y por tanto el de entrenamiento. Bueno aunque cabe resaltar que los ejercicios de clasifiación anteriores 
+      ya han trabajado con la proporcion 80/20.
+
+      \begin{table}[htbp]
+        \centering
+          \begin{tabular}{lcccc}
+          \hline
+          \textbf{Modelo} & \textbf{0.1} & \textbf{0.2} & \textbf{0.4} & \textbf{0.6} \\
+          \hline
+          Decision Tree        & 0.832343 & 0.821582 & 0.816868 & 0.812837 \\
+          k-NN                 & 0.802828 & 0.803033 & 0.798985 & 0.799378 \\
+          Logistic Regression  & 0.812667 & 0.808055 & 0.804212 & 0.804912 \\
+          Voting Classifier    & 0.823529 & 0.819123 & 0.813640 & 0.813008 \\
+          \hline
+          \end{tabular}
+        \caption{Desempeño por umbral}
+        \label{tab:desempeno-umbrales}
+      \end{table}
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{model_accuracy_vs_split_ratio.png}
+        \caption{Desempeño modelos variando tamaño del dataset de prueba}
+        \label{fig:comp_models_vtest}
+      \end{figure}
+
+      En general, al aumentar el tamaño del conjunto de prueba, la precisión de los modelos tendió a disminuir. 
+      El \textit{árbol de decisión} obtuvo los mejores resultados tanto en la partición 90/10 como en la 40/60, mientras 
+      que \(k\)-NN fue el de menor desempeño en esos mismos escenarios. La \textit{regresión logística} se 
+      mantuvo estable y poco sensible a los cambios en la proporción de entrenamiento y prueba. El modelo de 
+      \textit{votación mayoritaria} siguió el mismo patrón que los modelos individuales, con una ligera caída de 
+      rendimiento al crecer el conjunto de prueba. Como lectura práctica, los árboles de decisión parecen beneficiarse 
+      más de contar con más datos para entrenar y son más sensibles al reparto de los datos que la regresión logística. 
+      El ensamble por mayoría no compensó de forma notable la reducción del conjunto de entrenamiento. 
+
 \end{enumerate}
 
 \section{Conclusiones}
-Se resumen los hallazgos principales, las limitaciones del análisis y posibles mejoras futuras 
-(por ejemplo, técnicas de balanceo de clases o selección de características).
+\begin{enumerate}
+  \item El conjunto presenta fuerte desbalance (\(\leq 50\,\text{K}\) mayoritario) y variables con asimetrías 
+  extremas (p.\,ej., \( \textit{capital-gain} \) y \( \textit{capital-loss} \) con \(Q_1=Q_2=Q_3=0\)), lo que afecta 
+  el \emph{recall} de la clase \(>50\,\text{K}\) y sugiere transformar estas variables. 
 
+  \item Entre las reglas basadas en regresión logística con dos predictores, la pareja (education\-num, 
+  capital\-gain) logró el mejor equilibrio global pero con el patrón de “alta precisión y bajo \emph{recall}” 
+  para \(>50\,\text{K}\).
+
+  \item El Árbol de Decisión optimizado fue el mejor clasificador en términos globales, con buen balance entre clases, 
+  y usando \texttt{max\_depth} \(=10\) y \texttt{min\_samples\_split} \(=20\) como valores de estos hiperparámetros. 
+
+  \item El modelo por mayor votación no superó al mejor componente (árbol optimizado) y heredó el sesgo de alta precisión 
+  y bajo \emph{recall} en \(>50\,\text{K}\). Para mejorar, podría convenir usar \emph{soft voting} con mayor peso al árbol.
+
+  \item Al variar la proporción entrenamiento/prueba, la \(\textit{accuracy}\) tendió a bajar cuando creció el conjunto 
+  de prueba; el árbol se benefició más de contar con más datos de entrenamiento, mientras que la regresión logística 
+  se mantuvo relativamente estable. El modelo por mayor votación no compensó la reducción del tamaño de entrenamiento, reforzando la 
+  recomendación de priorizar el árbol de decisión optimizado.
+\end{enumerate}
 \end{document}
