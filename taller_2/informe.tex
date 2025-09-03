@@ -1,0 +1,275 @@
+\documentclass[12pt,a4paper]{article}
+
+% IMPORTACIÓN PAQUETES
+% Acentos
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Idioma español
+\usepackage[spanish]{babel}
+% Insertar imágenes
+\usepackage{graphicx}
+% Subfiguras
+\usepackage{subcaption}
+% Espaciado
+\usepackage{setspace}
+% Comillas inteligentes
+\usepackage{csquotes}
+% Márgenes
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+% Hipervínculos
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black
+}
+% Referencias inteligentes
+\usepackage{cleveref}
+
+% Configuración de cleveref en español
+\crefname{figure}{figura}{figuras}
+\Crefname{figure}{Figura}{Figuras}
+\crefname{subfigure}{figura}{figuras}
+\Crefname{subfigure}{Figura}{Figuras}
+
+% Conjunciones en español
+\AtBeginDocument{\renewcommand{\creflastconjunction}{ y~}}
+\AtBeginDocument{\renewcommand{\crefrangeconjunction}{ a~}}
+\AtBeginDocument{\renewcommand{\crefmiddleconjunction}{, }}
+
+% Para no repetir la carpeta de resultados en cada imagen
+\graphicspath{{resultados/}}
+
+% Título y autoría
+\title{\textbf{Análisis exploratorio de datos del Dataset "EVA" del IDEAM}}
+\author{Haessler Joan Ortiz Moncada \\[0.5cm]
+        Universidad Distrital Francisco José de Caldas \\
+        Facultad de Ingeniería \\
+        Curso: BIG DATA}
+\date{\today}
+
+\begin{document}
+
+% Título
+\maketitle
+
+% Descripción del dataset
+\section{Descripción del Dataset}
+El conjunto de datos \textit{EDA}, proporcionado por el IDEAM (Instituto de Hidrología, Meteorología y Estudios Ambientales de Colombia), 
+contiene información sobre los cultivos agrícolas registrados en diferentes municipios de Colombia entre los años 2006 y 2018. 
+En total, el dataset incluye aproximadamente 206\,068 registros y diecisiete variables, las cuales se describen en la \cref{tab:campos}:
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \multicolumn{1}{|c|}{\textbf{Nombre Campo}} & \multicolumn{1}{c|}{\textbf{Significado}}     & \multicolumn{1}{c|}{\textbf{Tipo}} \\ \hline
+        cod\_dpto                                   & Código departamento                           & int64                              \\ \hline
+        departamento                                & Nombre departamento                           & str                                \\ \hline
+        cod\_mun                                    & Código municipio                              & int64                              \\ \hline
+        municipio                                   & Nombre municipio                              & str                                \\ \hline
+        gr\_cult                                    & Grupo cultivo                                 & str                                \\ \hline
+        Sub\_gr\_cult                               & Subgrupo cultivo                              & str                                \\ \hline
+        cultivo                                     & Cultivo                                       & str                                \\ \hline
+        des\_reg\_sist\_prod                        & Desagregación regional y/o sistema productivo & str                                \\ \hline
+        year                                        & Año                                           & int64                              \\ \hline
+        prd                                         & Periodo                                       & str                                \\ \hline
+        ha\_semb                                    & Área sembrada (ha)                            & int64                              \\ \hline
+        ha\_csda                                    & Área cosechada (ha)                           & int64                              \\ \hline
+        t\_prod                                     & Produccion (t)                                & int64                              \\ \hline
+        t\_ha\_rend                                 & Rendimiento (t/ha)                            & float64                            \\ \hline
+        st\_fis\_prd                                & Estado físico de producción                   & str                                \\ \hline
+        name\_st                                    & Nombre científico                             & str                                \\ \hline
+        cl\_clt                                     & Ciclo de cultivo                              & str                                \\ \hline
+    \end{tabular}
+    \caption{Campos del dataset EDA del IDEAM}
+    \label{tab:campos}
+\end{table}
+
+% 
+\section{Estadisticas básicas}
+Como forma de entender mejor el dataset, se realizó un análisis exploratorio de datos (EDA, por sus siglas en inglés)
+mediante la clase \texttt{Eda} desarrollada por mi e implementada en Python. Esta clase permite contar los registros, 
+obtener los nombres y tipos de los campos, generar histogramas y diagramas de caja para variables numéricas,
+y crear tablas de contingencia para variables categóricas. Antes de presentar esta infromación, es importante mencionar 
+que la clase incluye un método de limpieza de datos que elimina los registros con valores faltantes o inconsistentes, lo
+que redujo el número total de registros de 206\,068 a 199\,801. A continuación, se presentan algunas estadísticas básicas 
+obtenidas del dataset:
+
+\begin{center}
+    \begin{itemize}
+        \item \textbf{Variable}: ha\_semb
+        \begin{itemize}
+            \item mean: 298.38
+            \item std: 1169.24
+            \item min: 0.00
+            \item 25\%: 10.00
+            \item 50\%: 38.00
+            \item 75\%: 160.00
+            \item max: 47\,403.00
+        \end{itemize}
+
+        \item \textbf{Variable}: ha\_csda
+        \begin{itemize}
+            \item mean: 256.93
+            \item std: 994.66
+            \item min: 0.00
+            \item 25\%: 9.00
+            \item 50\%: 30.00
+            \item 75\%: 137.00
+            \item max: 38\,600.00
+        \end{itemize}
+
+        \item \textbf{Variable}: t\_prod
+        \begin{itemize}
+            \item mean: 2\,874.78
+            \item std: 45\,814.01
+            \item min: 0.00
+            \item 25\%: 36.00
+            \item 50\%: 150.00
+            \item 75\%: 4\,546.00
+            \item max: 123\,000.00
+        \end{itemize}
+
+        \item \textbf{Variable}: t\_ha\_rend
+        \begin{itemize}
+            \item mean: 9.27
+            \item std: 14.96
+            \item min: 0.03
+            \item 25\%: 1.50
+            \item 50\%: 5.00
+            \item 75\%: 11.50
+            \item max: 246.00
+        \end{itemize}
+    \end{itemize}
+\end{center}
+
+Lógicamente, estas estadísticas solo son representativas para las variables numéricas del dataset. 
+Estas estadísiticas permiten ver que existe una alta variabilidad en los datos, sin embargo, esto 
+se explica por la presencia de outliers positivos altos, más no porque la varibilidad general 
+de los datos sea alta.
+
+Para las variables categóricas, se optó por mostrar una tabla de contingencia entre las variables 
+\textbf{departamento} y \textbf{Sub\_gr\_cult} (y solo para AGUACATE, BANANO y CAFÉ), la cual se 
+presenta en la \cref{tab:contingencia}. Recordar que el presente informe no busca hacer un análisis 
+exhaustivo, sino más bien ilustrar cómo realizar un Análisis Exploratorio de Datos (EDA por sus siglas 
+en inglés) básico.
+
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{|llll|}
+        \hline
+        \multicolumn{4}{|c|}{\textbf{Tabla de contingencia (filtrada)}}                                                                                \\ \hline
+        \multicolumn{1}{|l|}{\textbf{Departamento}}    & \multicolumn{1}{l|}{\textbf{AGUACATE}} & \multicolumn{1}{l|}{\textbf{BANANO}} & \textbf{CAFE} \\ \hline
+        \multicolumn{1}{|l|}{AMAZONAS}                 & \multicolumn{1}{l|}{8}                 & \multicolumn{1}{l|}{2}               & 0             \\ \hline
+        \multicolumn{1}{|l|}{ANTIOQUIA}                & \multicolumn{1}{l|}{674}               & \multicolumn{1}{l|}{286}             & 1096          \\ \hline
+        \multicolumn{1}{|l|}{ARAUCA}                   & \multicolumn{1}{l|}{28}                & \multicolumn{1}{l|}{0}               & 1             \\ \hline
+        \multicolumn{1}{|l|}{ATLANTICO}                & \multicolumn{1}{l|}{2}                 & \multicolumn{1}{l|}{0}               & 0             \\ \hline
+        \multicolumn{1}{|l|}{BOLIVAR}                  & \multicolumn{1}{l|}{89}                & \multicolumn{1}{l|}{0}               & 20            \\ \hline
+        \multicolumn{1}{|l|}{BOYACA}                   & \multicolumn{1}{l|}{159}               & \multicolumn{1}{l|}{62}              & 471           \\ \hline
+        \multicolumn{1}{|l|}{CALDAS}                   & \multicolumn{1}{l|}{271}               & \multicolumn{1}{l|}{62}              & 300           \\ \hline
+        \multicolumn{1}{|l|}{CAQUETA}                  & \multicolumn{1}{l|}{4}                 & \multicolumn{1}{l|}{0}               & 81            \\ \hline
+        \multicolumn{1}{|l|}{CASANARE}                 & \multicolumn{1}{l|}{64}                & \multicolumn{1}{l|}{11}              & 85            \\ \hline
+        \multicolumn{1}{|l|}{CAUCA}                    & \multicolumn{1}{l|}{125}               & \multicolumn{1}{l|}{52}              & 380           \\ \hline
+        \multicolumn{1}{|l|}{CESAR}                    & \multicolumn{1}{l|}{182}               & \multicolumn{1}{l|}{13}              & 228           \\ \hline
+        \multicolumn{1}{|l|}{CHOCO}                    & \multicolumn{1}{l|}{29}                & \multicolumn{1}{l|}{165}             & 12            \\ \hline
+        \multicolumn{1}{|l|}{CORDOBA}                  & \multicolumn{1}{l|}{10}                & \multicolumn{1}{l|}{0}               & 0             \\ \hline
+        \multicolumn{1}{|l|}{CUNDINAMARCA}             & \multicolumn{1}{l|}{268}               & \multicolumn{1}{l|}{179}             & 817           \\ \hline
+        \multicolumn{1}{|l|}{GUAINIA}                  & \multicolumn{1}{l|}{2}                 & \multicolumn{1}{l|}{0}               & 0             \\ \hline
+        \multicolumn{1}{|l|}{HUILA}                    & \multicolumn{1}{l|}{332}               & \multicolumn{1}{l|}{228}             & 420           \\ \hline
+        \multicolumn{1}{|l|}{LA GUAJIRA}               & \multicolumn{1}{l|}{127}               & \multicolumn{1}{l|}{24}              & 122           \\ \hline
+        \multicolumn{1}{|l|}{MAGDALENA}                & \multicolumn{1}{l|}{0}                 & \multicolumn{1}{l|}{72}              & 48            \\ \hline
+        \multicolumn{1}{|l|}{META}                     & \multicolumn{1}{l|}{110}               & \multicolumn{1}{l|}{22}              & 155           \\ \hline
+        \multicolumn{1}{|l|}{NARIÑO}                   & \multicolumn{1}{l|}{177}               & \multicolumn{1}{l|}{239}             & 466           \\ \hline
+        \multicolumn{1}{|l|}{NORTE DE SANTANDER}       & \multicolumn{1}{l|}{171}               & \multicolumn{1}{l|}{63}              & 422           \\ \hline
+        \multicolumn{1}{|l|}{PUTUMAYO}                 & \multicolumn{1}{l|}{14}                & \multicolumn{1}{l|}{52}              & 19            \\ \hline
+        \multicolumn{1}{|l|}{QUINDIO}                  & \multicolumn{1}{l|}{141}               & \multicolumn{1}{l|}{171}             & 144           \\ \hline
+        \multicolumn{1}{|l|}{RISARALDA}                & \multicolumn{1}{l|}{141}               & \multicolumn{1}{l|}{67}              & 168           \\ \hline
+        \multicolumn{1}{|l|}{SAN ANDRES Y PROVIDENCIA} & \multicolumn{1}{l|}{2}                 & \multicolumn{1}{l|}{6}               & 0             \\ \hline
+        \multicolumn{1}{|l|}{SANTANDER}                & \multicolumn{1}{l|}{281}               & \multicolumn{1}{l|}{106}             & 852           \\ \hline
+        \multicolumn{1}{|l|}{SUCRE}                    & \multicolumn{1}{l|}{39}                & \multicolumn{1}{l|}{0}               & 0             \\ \hline
+        \multicolumn{1}{|l|}{TOLIMA}                   & \multicolumn{1}{l|}{287}               & \multicolumn{1}{l|}{167}             & 451           \\ \hline
+        \multicolumn{1}{|l|}{VALLE DEL CAUCA}          & \multicolumn{1}{l|}{417}               & \multicolumn{1}{l|}{475}             & 468           \\ \hline
+        \multicolumn{1}{|l|}{VICHADA}                  & \multicolumn{1}{l|}{5}                 & \multicolumn{1}{l|}{3}               & 0             \\ \hline
+    \end{tabular}
+    \caption{Cantidad de cultivos por departamentos}
+    \label{tab:contingencia}
+\end{table}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{}
+        \caption{Distribución por grupo etario}
+        \label{fig:f1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{}
+        \caption{Nivel educativo más alto alcanzado}
+        \label{fig:f2}
+    \end{subfigure}
+    \caption{Caracterización de la población encuestada}
+\end{figure}
+
+%Las \cref{fig:f3,fig:f4} ayudan a ilustrar esta información:
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{}
+        \caption{Nivel de familiaridad con el término IA}
+        \label{fig:f3}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{}
+        \caption{Capacidad de dar ejemplos de IA}
+        \label{fig:f4}
+    \end{subfigure}
+    \caption{Percepción de familiaridad y ejemplos de IA}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{}
+        \caption{Confianza en los sistemas de IA}
+        \label{fig:f5}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{}
+        \caption{Percepción sobre el uso de datos por parte del gobierno y las empresas}
+        \label{fig:f6}
+    \end{subfigure}
+    \caption{Confianza y percepción sobre uso de datos}
+\end{figure}
+
+% Conclusión
+\section*{Conclusiones}
+La encuesta realizada a mi familia permite obtener una visión general sobre cómo una familia colombiana
+relativamente promedio percibe el término IA. A partir de esta encuesta, se puede concluir que la IA se entiende como 
+una tecnología que permite a las máquinas realizar tareas de alta complejidad que normalmente requieren inteligencia humana,
+y que además lo hacen en tiempo récord. 
+
+No obstante, la percepción de su funcionamiento, alcance y aplicaciones es limitada; incluso parece difícil 
+diferenciar qué es IA y qué no lo es, pues se mencionan aplicaciones que no la implementan realmente. 
+Para varios miembros de mi familia, la IA es comparable a un buscador de Google o a un asistente virtual, 
+lo que indica que la comprensión sobre esta tecnología es superficial y no se relaciona con sus capacidades más avanzadas.
+
+Por otra parte, la encuesta evidencia una clara falta de confianza en los sistemas de IA. 
+La mayoría considera que la IA debe ser únicamente una herramienta de apoyo para el ser humano, 
+pero no un reemplazo. Asimismo, coinciden en que las decisiones críticas deben seguir siendo tomadas por personas. 
+Esto refleja que, aunque varios encuestados utilizan sistemas de IA, sienten recelo por la posibilidad de que esta tecnología reemplace al ser humano 
+en ciertas tareas, así como por la idea de que múltiples aspectos de la vida cotidiana podrían ser monitoreados y controlados por la IA.
+\end{document}

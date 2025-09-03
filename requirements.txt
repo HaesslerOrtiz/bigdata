@@ -6,3 +6,5 @@ openpyxl
 xlrd  
 # Librería para gráficos y visualizaciones en 2D (histogramas, scatter, etc.)
 matplotlib
+# Librería avanzada para visualizaciones estadísticas (boxplots, heatmaps, etc.)
+seaborn

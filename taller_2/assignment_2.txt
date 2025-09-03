@@ -1,0 +1,24 @@
+In this exercise you should choose one of the three following datasets, and
+then perform Exploratory Data Analysis, similarly as we made it before.
+Your goal is to prepare a technical mini-report with your findings. Your
+mini report must contain the following information:
+
+- Brief description of the data
+- Results: visual (and numerical if needed) information that summarises
+  the performed analysis
+- Relevant snippets of code used to obtain the results
+
+1. Wine recognition dataset: A set of measurements of chemical
+analysis of wines grown in the same region in Italy.
+archive.ics.uci.edu/ml/datasets/wine
+
+2. Boston Housing dataset: Information collected by the U.S Census
+Service concerning housing in the area of Boston.
+cs.toronto.edu/~delve/data/boston/bostonDetail.html
+archive.ics.uci.edu/ml/machine-learning-databases/
+housing/
+
+3. Titanic dataset: Information about victims and survivors of the
+tragedy.
+web.stanford.edu/class/archive/cs/cs109/cs109.1166/
+problem12.html
