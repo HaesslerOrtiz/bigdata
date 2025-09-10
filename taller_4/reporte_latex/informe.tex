@@ -87,8 +87,7 @@ haciendo uso de los paquetes \texttt{os}, \texttt{pandas}, \texttt{scikit-learn}
 También se tuvo en cuenta manejar el mismo escenario de aleatoriedad (semiila) para poder replicar los resultados.
 
 Básicamente, lo que se hizo fue ir desarrollando en Colab el código correspondiente y de manera 
-paralela documentar los hallazgos y resultados en este informe. Por último, el código fuente implementado en Colab, 
-los datos utilizados y el archivo de este informe se encuentran en la carpeta taller\_4 del repositorio de 
+paralela documentar los hallazgos y resultados en este informe. El archivo de este informe se encuentran en la carpeta taller\_4 del repositorio de 
 GitHub \href{https://github.com/HaesslerOrtiz/bigdata}{bigdata\_repositorio}.
 
 \section{Escenario 1: binario vs. clasificación multiclase}
@@ -162,8 +161,8 @@ que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy
     \endfoot
 
     \bottomrule
-    \caption{Reportes de clasificación k-NN en tres escenarios (2, 5 y 20 clases).}
-    \label{tab:reportes_clasificacion_knn_long}
+    \caption{Reportes de clasificación k-NN SC1.}
+    \label{tab:reportes_clasificacion_knn_sc1}
     \endlastfoot
 
     % ================= (a) 2 clases =================
@@ -230,8 +229,8 @@ que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy
       \texttt{min\_samples\_leaf} & Mín. muestras por hoja & \{1, 2, 4\} \\
       \bottomrule
     \end{tabular}
-    \caption{Rangos de hiperparámetros evaluados para \texttt{DecisionTreeClassifier}.}
-    \label{tab:param_dt_ranges}
+    \caption{Busqueda de hiperparámetros Arbol de de Decisión SC1.}
+    \label{tab:param_dt_sc1}
   \end{table}
 
   Con base en esta busqueda se obtuvieron las siguientes mejores configuraciones de hiperparámetros para cada dataset:
@@ -247,8 +246,8 @@ que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy
       20 & 10             & 1 & 5 \\
       \bottomrule
     \end{tabular}
-    \caption{Mejores hiperparámetros encontrados para \texttt{Arbol de decisión}.}
-    \label{tab:best_hparams_dt}
+    \caption{Mejores hiperparámetros encontrados para Árbol de decisión SC1.}
+    \label{tab:best_hparams_dt_sc1}
   \end{table}
 
   Respecto al desempeño obtenido en cada uno de los modelos se tienen los siguientes resultados:
@@ -271,8 +270,8 @@ que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy
     \endfoot
 
     \bottomrule
-    \caption{Reportes de clasificación — Árbol de decisión (2, 5 y 20 clases).}
-    \label{tab:reportes_clasificacion_arbol}
+    \caption{Reportes de clasificación Árbol de decisión SC1.}
+    \label{tab:reportes_dt_sc1}
     \endlastfoot
 
     % ================= (a) 2 clases =================
@@ -340,13 +339,13 @@ que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy
       \texttt{gamma} & Coeficiente del kernel. & \{\texttt{scale}, \texttt{auto}, 0.1, 1\} \\
       \bottomrule
     \end{tabular}
-    \caption{Espacio de hiperparámetros evaluado para SVM.}
-    \label{tab:param_svm_ranges}
+    \caption{Busqueda de hiperparámetros para SVM SC1.}
+    \label{tab:param_svm_sc1}
   \end{table}
   
   Los mejores hiperparámetros encontrados para cada dataset, fueron los siguientes:
 
-  \begin{table}[htbp]
+  \begin{table}[H]
     \centering
     \begin{tabular}{@{}lccc@{}}
       \toprule
@@ -357,8 +356,8 @@ que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy
       20 & 0.1 & \texttt{scale} & \texttt{linear} \\
       \bottomrule
     \end{tabular}
-    \caption{Mejores hiperparámetros SVM.}
-    \label{tab:best_hparams_svm}
+    \caption{Mejores hiperparámetros SVM SC1.}
+    \label{tab:best_hparams_svm_sc1}
   \end{table}
   
   Con los mejores hiperparámetros encontrados, se obtuvieron los siguientes resultados:
@@ -381,7 +380,7 @@ que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy
     \endfoot
 
     \bottomrule
-    \caption{Reportes de clasificación — \textbf{SVM} (2, 5 y 20 clases).}
+    \caption{Reportes de clasificación SVM SC1.}
     \label{tab:reportes_clasificacion_svm}
     \endlastfoot
 
@@ -454,11 +453,12 @@ que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy
       \texttt{max\_iter}            & Iteraciones máximas            & 200, 500 \\
       \bottomrule
     \end{tabularx}
-    \caption{Espacio de hiperparámetros evaluado para MLP.}
-    \label{tab:param_mlp_ranges_fit}
+    \caption{Busqueda de hiperparámetros para MLP SC1.}
+    \label{tab:param_mlp_sc1}
   \end{table}
 
-   Con base en esta busqueda se obtuvieron las siguientes mejores configuraciones de hiperparámetros para cada dataset:
+   Solo se usó un solo optimizador de pesos, conforme lo sugirió la IA de Colab. Con base en esta busqueda se obtuvieron 
+   las siguientes mejores configuraciones de hiperparámetros para cada dataset:
 
   \begin{table}[htbp]
     \centering\small
@@ -472,8 +472,8 @@ que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy
       20 & \texttt{(100,)}    & \texttt{tanh} & \texttt{adam} & 0.0001 & 0.001 & 500 \\
       \bottomrule
     \end{tabularx}
-    \caption{Mejores hiperparámetros MLP.}
-    \label{tab:best_hparams_mlp}
+    \caption{Mejores hiperparámetros MLP SC1.}
+    \label{tab:best_hparams_mlp_SC1}
   \end{table}
 
    Con la configuraciones de hiperparámetros encontradas, se obtuvieron los siguientes resultados:
@@ -496,7 +496,7 @@ que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy
       \endfoot
 
       \bottomrule
-      \caption{Reportes de clasificación — \textbf{MLP} (2, 5 y 20 clases).}
+      \caption{Reportes de clasificación MLP SC1.}
       \label{tab:mlp_reports_long}
       \endlastfoot
 
@@ -590,7 +590,7 @@ que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy
     \item Probar \textbf{ensambles} (bagging/boosting) y \textbf{calibración} de probabilidades.
   \end{enumerate}
 
-  \noindent En síntesis: con pocas clases, casi todo funciona perfecto; con 20 clases, la tarea se complica y destacan los modelos 
+  \noindent En resumen, con pocas clases, casi todo funciona perfecto, con 20 clases, la tarea se complica y destacan los modelos 
   que aprenden \textbf{fronteras no lineales} y manejan mejor el \textbf{desbalance} (MLP/SVM), aunque K-NN puede empatar cuando las 
   clases quedan bien definidas.
 
@@ -635,7 +635,7 @@ que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy
     \threefigsrow{svm_decision_boundary_2_classes.png}{svm_decision_boundary_5_classes.png}{svm_decision_boundary_20_classes.png}
     % ----- Fila 4 -----
     \threefigsrow{mlp_decision_boundary_2_classes.png}{mlp_decision_boundary_5_classes.png}{mlp_decision_boundary_20_classes.png}
-    \caption{Matriz de fronteras de decisión.}% <- título general (parte 2)
+    \caption{Matriz de fronteras de decisión SC1.}% <- título general (parte 2)
     \label{fig:matriz_4x3}
   \end{figure}
 
@@ -674,7 +674,7 @@ registros para cada clase en cada dataset.
 
     \bottomrule
     \caption{K-NN: métricas.}
-    \label{tab:knn_metr_size}
+    \label{tab:reportes_clasificacion_knn_sc2}
     \endlastfoot
 
     % ===== 100 samples =====
@@ -730,7 +730,7 @@ registros para cada clase en cada dataset.
   \item \textbf{Arbol de decisión.}
   Se buscó la mejor configuración de hiperparámetros en relación con el desempeño de los modelos, el rango de 
   busqueda para este escenario, fue el mismo que para el anterior, es decir, los mismos establecidos en la 
-  \Cref{tab:rango_hip_knn}. La mejor configuración para cada dataset fue la siguiente:
+  \Cref{tab:param_dt_sc1}. La mejor configuración para cada dataset fue la siguiente:
 
   \begin{table}[htbp]
     \centering\small
@@ -746,8 +746,8 @@ registros para cada clase en cada dataset.
       1\,000\,000 & 20            & 1 & 2 \\
       \bottomrule
     \end{tabularx}
-    \caption{Mejores hiperparámetros Arbol de decisión.}
-    \label{tab:dt_best_hparams_by_size}
+    \caption{Mejores hiperparámetros Arbol de decisió SC2.}
+    \label{tab:best_hparams_dt_sc2}
   \end{table}
 
   Las métricas de desempeño correspondientes se muestran a continuación:
@@ -770,7 +770,7 @@ registros para cada clase en cada dataset.
     \endfoot
 
     \bottomrule
-    \caption{Árbol de decisión: métricas de desempeño por dataset.}
+    \caption{Reportes de clasificación Árbol de decisión SC2.}
     \label{tab:dt_metrics_by_size}
     \endlastfoot
 
@@ -828,15 +828,588 @@ registros para cada clase en cada dataset.
   Buscando la mejor configuración de hiperparámetros en relación con el desempeño de los modelos, se optó por probar 
   con las siguientes posibilidades:
 
-  
+  \begin{table}[H]
+    \centering\small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabularx}{\linewidth}{@{}l l X@{}}
+      \toprule
+      \textbf{Parámetro} & \textbf{Descripción} & \textbf{Valores probados} \\
+      \midrule
+      \texttt{C}      & Parámetro de regularización (controla el castigo por errores). & \{0.1, 1, 10\} \\
+      \texttt{kernel} & Tipo de núcleo utilizado por SVM. & \{\texttt{linear}, \texttt{rbf}\} \\
+      \texttt{gamma}  & Coeficiente del kernel (aplica a \texttt{rbf}; se ignora en \texttt{linear}). & \{\texttt{scale}, \texttt{auto}\} \\
+      \bottomrule
+    \end{tabularx}
+    \caption{Búsqueda de hiperparámetros para SVM SC2.}
+    \label{tab:param_svm_sc2}
+  \end{table}
 
   Se tuvieron las siguientes mejores configuraciones para cada dataset:
-  
+
+  \begin{table}[H]
+    \centering\small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabularx}{\linewidth}{@{}lccc@{}}
+      \toprule
+      \textbf{Tamaño (muestras)} & \texttt{C} & \texttt{gamma} & \texttt{kernel} \\
+      \midrule
+      100      & 10 & \texttt{scale} & \texttt{rbf} \\
+      1\,000   & 10 & \texttt{auto}  & \texttt{rbf} \\
+      10\,000  & 10 & \texttt{scale} & \texttt{rbf} \\
+      \bottomrule
+    \end{tabularx}
+    \caption{Mejores hiperparámetros SVM SC2.}
+    \label{tab:best_hparams_svm_sc2}
+  \end{table}
+
   Las métricas de desempeño correspondientes se muestran a continuación:
 
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{longtable}{@{}lcccc@{}}
+    \toprule
+    \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+    \midrule
+    \endfirsthead
+
+    \toprule
+    \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+    \midrule
+    \endhead
+
+    \midrule
+    \multicolumn{5}{r}{\emph{Continúa en la siguiente página}} \\
+    \endfoot
+
+    \bottomrule
+    \caption{Reportes de clasificación SVM SC2.}
+    \label{tab:reportes_clasificacion_svm_sc2}
+    \endlastfoot
+
+    % ================= 100 samples =================
+    \multicolumn{5}{@{}l}{\textbf{(a) 100 muestras}}\\
+    0 & 1.00 & 0.80 & 0.89 & 5 \\
+    1 & 0.57 & 0.80 & 0.67 & 5 \\
+    2 & 0.50 & 0.60 & 0.55 & 5 \\
+    3 & 1.00 & 0.60 & 0.75 & 5 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}} & \textbf{0.70} & 20 \\
+    \textbf{Macro avg}    & 0.77 & 0.70 & 0.71 & 20 \\
+    \textbf{Weighted avg} & 0.77 & 0.70 & 0.71 & 20 \\
+    \multicolumn{5}{@{}l}{\textbf{Tiempo (s)}: 0.26} \\
+    \addlinespace[0.8em]
+
+    % ================= 1,000 samples =================
+    \multicolumn{5}{@{}l}{\textbf{(b) 1\,000 muestras}}\\
+    0 & 0.98 & 0.98 & 0.98 & 50 \\
+    1 & 0.96 & 0.90 & 0.93 & 50 \\
+    2 & 0.92 & 0.98 & 0.95 & 50 \\
+    3 & 1.00 & 1.00 & 1.00 & 50 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}} & \textbf{0.96} & 200 \\
+    \textbf{Macro avg}    & 0.97 & 0.96 & 0.96 & 200 \\
+    \textbf{Weighted avg} & 0.97 & 0.96 & 0.96 & 200 \\
+    \multicolumn{5}{@{}l}{\textbf{Tiempo (s)}: 1.48} \\
+    \addlinespace[0.8em]
+
+    % ================= 10,000 samples =================
+    \multicolumn{5}{@{}l}{\textbf{(c) 10\,000 muestras}}\\
+    0 & 1.00 & 0.99 & 0.99 & 500 \\
+    1 & 0.99 & 1.00 & 0.99 & 500 \\
+    2 & 0.99 & 0.98 & 0.99 & 500 \\
+    3 & 0.98 & 0.99 & 0.99 & 500 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}} & \textbf{0.99} & 2\,000 \\
+    \textbf{Macro avg}    & 0.99 & 0.99 & 0.99 & 2\,000 \\
+    \textbf{Weighted avg} & 0.99 & 0.99 & 0.99 & 2\,000 \\
+    \multicolumn{5}{@{}l}{\textbf{Tiempo (s)}: —} \\
+  \end{longtable}
+
+  \textbf{Nota:} No fue posible ejecutar el código para la búsqueda de los mejores hiperparámetros ni para la 
+  implementación de los modelos en los datasets de tamaño \(10^5\) y \(10^6\). En Colab, el tiempo de ejecución 
+  superó una hora sin finalizar el proceso, por lo que no se obtuvieron los hiperparámetros óptimos ni los resultados 
+  correspondientes para estos tamaños.
+
+  \item \textbf{MLP.}
+  Buscando la mejor configuración de hiperparámetros en relación con el desempeño de los modelos, se optó por probar 
+  con las siguientes posibilidades:
+
+  \begin{table}[htbp]
+    \centering
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabularx}{\linewidth}{@{}l l X@{}}
+      \toprule
+      \textbf{Parámetro} & \textbf{Descripción} & \textbf{Valores de búsqueda} \\
+      \midrule
+      \texttt{hidden\_layer\_sizes} & Tamaño(s) de la(s) capa(s) oculta(s) & \texttt{(50,)}, \texttt{(100,)}, \texttt{(50, 50)} \\
+      \texttt{activation}           & Función de activación en capas ocultas & \texttt{tanh}, \texttt{relu} \\
+      \texttt{solver}               & Optimizador para los pesos              & \texttt{adam} \\
+      \texttt{alpha}                & Penalización L2 (regularización)        & 0.0001, 0.001 \\
+      \texttt{learning\_rate\_init} & Tasa de aprendizaje inicial             & 0.001, 0.01 \\
+      \texttt{max\_iter}            & Iteraciones máximas de entrenamiento    & 200, 500 \\
+      \bottomrule
+    \end{tabularx}
+    \caption{Búsqueda hiperparámetros MLP SC2}
+    \label{tab:param_mlp_sc2}
+  \end{table}
+
+  Solo se usó un solo optimizador de pesos, conforme lo sugirió la IA de Colab, y se hallaron las siguientes mejores 
+  configuraciones:
+
+  \begin{table}[H]
+    \centering\small
+    \setlength{\tabcolsep}{4pt}
+    \begin{adjustbox}{max width=\linewidth}
+      \begin{tabular}{@{}l l l l c c c c@{}}
+        \toprule
+        \textbf{Tamaño (muestras)} & \texttt{hidden\_layer\_sizes} & \texttt{activation} & \texttt{solver} & \texttt{alpha} & \texttt{learning\_rate\_init} & \texttt{max\_iter}\\
+        \midrule
+        100      & \texttt{(100,)}    & \texttt{relu} & \texttt{adam} & 0.0001 & 0.01  & 500\\
+        1\,000   & \texttt{(50, 50)}  & \texttt{relu} & \texttt{adam} & 0.001  & 0.01  & 200\\
+        10\,000  & \texttt{(50, 50)}  & \texttt{tanh} & \texttt{adam} & 0.0001 & 0.001 & 500\\
+        \bottomrule
+      \end{tabular}
+    \end{adjustbox}
+    \caption{Mejores hiperparámetros encontrados para MLP SC2.}
+    \label{tab:best_hparams_mlp_sc2}
+  \end{table}
+
+  Se generó el siguiente reporte de clasificacion:
+  
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{longtable}{@{}lcccc@{}}
+    \toprule
+    \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+    \midrule
+    \endfirsthead
+
+    \toprule
+    \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+    \midrule
+    \endhead
+
+    \midrule
+    \multicolumn{5}{r}{\emph{Continúa en la siguiente página}} \\
+    \endfoot
+
+    \bottomrule
+    \caption{Reportes de clasificación MLP SC2.}
+    \label{tab:mlp_reports_by_size}
+    \endlastfoot
+
+    % ================= 100 samples =================
+    \multicolumn{5}{@{}l}{\textbf{(a) 100 muestras}}\\
+    0 & 0.83 & 1.00 & 0.91 & 5 \\
+    1 & 0.60 & 0.60 & 0.60 & 5 \\
+    2 & 0.60 & 0.60 & 0.60 & 5 \\
+    3 & 1.00 & 0.80 & 0.89 & 5 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}} & \textbf{0.75} & 20 \\
+    \textbf{Macro avg}    & 0.76 & 0.75 & 0.75 & 20 \\
+    \textbf{Weighted avg} & 0.76 & 0.75 & 0.75 & 20 \\
+    \addlinespace[0.8em]
+
+    % ================= 1,000 samples =================
+    \multicolumn{5}{@{}l}{\textbf{(b) 1\,000 muestras}}\\
+    0 & 1.00 & 0.94 & 0.97 & 50 \\
+    1 & 0.92 & 0.96 & 0.94 & 50 \\
+    2 & 0.96 & 0.90 & 0.93 & 50 \\
+    3 & 0.93 & 1.00 & 0.96 & 50 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}} & \textbf{0.95} & 200 \\
+    \textbf{Macro avg}    & 0.95 & 0.95 & 0.95 & 200 \\
+    \textbf{Weighted avg} & 0.95 & 0.95 & 0.95 & 200 \\
+    \addlinespace[0.8em]
+
+    % ================= 10,000 samples =================
+    \multicolumn{5}{@{}l}{\textbf{(c) 10\,000 muestras}}\\
+    0 & 1.00 & 0.99 & 1.00 & 500 \\
+    1 & 0.99 & 0.99 & 0.99 & 500 \\
+    2 & 0.99 & 0.99 & 0.99 & 500 \\
+    3 & 1.00 & 0.99 & 0.99 & 500 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}} & \textbf{0.99} & 2\,000 \\
+    \textbf{Macro avg}    & 0.99 & 0.99 & 0.99 & 2\,000 \\
+    \textbf{Weighted avg} & 0.99 & 0.99 & 0.99 & 2\,000 \\
+  \end{longtable}
+
+  \textbf{Nota:} Al igual que con el clasificador SVM, no fue posible terminar la ejecución del código para la 
+  búsqueda de los mejores hiperparámetros ni para la implementación de los modelos en los datasets de tamaño \(10^5\) y \(10^6\). 
+  En Colab, el tiempo de ejecución se superó el tiempo de una hora y media sin finalizar el proceso, por lo que no se obtuvieron 
+  los hiperparámetros óptimos ni los reportes de clasificación correspondientes para estos tamaños. Incluso, el compilador de 
+  Colab parece bloquearse conforme más le toma realizar una interpretación.
+
+  \item \textbf{Análisis de resultados.}
+
+  En los \emph{Quartiles Gaussian} de cuatro clases, el tamaño del conjunto de datos marca la diferencia: con muy pocos ejemplos, 
+  los modelos son inestables pero al pasar a 1{,}000 muestras ya se observa una mejora clara y, con 10{,}000 en adelante, las 
+  fronteras quedan bien definidas y todos los clasificadores aciertan casi siempre. Esto sugiere que las clases son separables 
+  pero requieren densidad de puntos; con más datos se “suavizan” los límites. En escalabilidad, el modelo k-NN se entrena rápido 
+  pero su predicción se encarece con muchos datos; el Árbol ofrece interpretabilidad; y SVM/MLP rinden muy alto aunque su costo 
+  computacional crece muchisimo. En síntesis, con pocos datos conviene regularizar y validar con cuidado, con muchos datos, 
+  cualquiera funciona bien y la elección debería guiarse por el costo de inferencia, interpretabilidad y el gasto computacional.
+
+  Adicionalmente, la \Cref{fig:barplot_sc2} muestra el desempeño de los modelos ejecutados:
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{model_accuracy_vs_dataset_size_barplot.png}
+    \caption{Desempeño modelos SC2.}
+    \label{fig:barplot_sc2}
+  \end{figure}
 
 \end{enumerate}
 
-\section{Conclusiones}
+\section{Escenario 3: grandes datasets vs pequeños datasets}
+En este escenario, se indica generar un dataset binario y construir a partir de el dos nuevos datasets, cada uno 
+con una tasa de corrupción específica. Las tasas de corrupción definidas son las siguientes: 10\%, y 30\%. De tal forma, 
+que en total se tienen 3 datasets, el original y los dos corrompidos de acuerdo con su respectiva tasa de corrupción. El 
+\texttt{Assignment \#4} no definió el tamaño de los datasets, así que se optó por conformarlos con 700 registros cada uno. 
+Por otra parte, el \texttt{Assignment \#4} si define el tipo de datos que deben tener los datasets, en este caso, de 
+tipo \texttt{Moon}. En este escenario tampoco se va a optar por generar un desbalance entre las clases, y tal como se hizo 
+en los anteriores, se dividirá cada dataset en conjunto de entrenamiento, validación y prueba, así como la busqueda de los 
+mejores hiperparámetros para los mismos modelos de clasificación que se han venido ejecutando. También se tuvo en cuenta 
+en la generación de estos datasets, mantener la proporción de clases del dataset original.
 
+\begin{enumerate}
+
+  \item \textbf{k-NN.}
+  Probando con un rango de 1 a 30 vecinos (al igual que en los anteriores escenarios) para cada uno de los datasets conformados, 
+  se consiguieron las siguientes mejores configuraciones:
+
+  \begin{table}[H]
+    \centering
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabularx}{\linewidth}{@{}l c c@{}}
+      \toprule
+      \textbf{Dataset} & \texttt{n\_neighbors}\\
+      \midrule
+      \texttt{clean}     & 1\\
+      \texttt{noisy\_10} & 7\\
+      \texttt{noisy\_30} & 25\\
+      \bottomrule
+    \end{tabularx}
+    \caption{Mejores hiperparámetros KNN SC3.}
+    \label{tab:best_hparams_knn_sc3}
+  \end{table}
+  
+  Respecto al desempeño obtenido en cada uno de los modelos se tienen los siguientes resultados:
+
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{longtable}{@{}lcccc@{}}
+    \toprule
+    \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+    \midrule
+    \endfirsthead
+
+    \toprule
+    \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+    \midrule
+    \endhead
+
+    \midrule
+    \multicolumn{5}{r}{\emph{Continúa en la siguiente página}} \\
+    \endfoot
+
+    \bottomrule
+    \caption{Reportes de clasificación k-NN SC3.}
+    \label{tab:reportes_clasificacion_knn_sc3}
+    \endlastfoot
+
+    % ================= clean =================
+    \multicolumn{5}{@{}l}{\textbf{(a) clean}}\\
+    0 & 1.00 & 1.00 & 1.00 & 70 \\
+    1 & 1.00 & 1.00 & 1.00 & 70 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}}     & \textbf{1.00} & 140 \\
+    \textbf{Macro avg}    & 1.00 & 1.00 & 1.00 & 140 \\
+    \textbf{Weighted avg} & 1.00 & 1.00 & 1.00 & 140 \\
+    \addlinespace[0.8em]
+
+    % ================= noisy_10 =================
+    \multicolumn{5}{@{}l}{\textbf{(b) noisy\_10}}\\
+    0 & 0.92 & 0.86 & 0.89 & 71 \\
+    1 & 0.86 & 0.93 & 0.90 & 69 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}}     & \textbf{0.89} & 140 \\
+    \textbf{Macro avg}    & 0.89 & 0.89 & 0.89 & 140 \\
+    \textbf{Weighted avg} & 0.89 & 0.89 & 0.89 & 140 \\
+    \addlinespace[0.8em]
+
+    % ================= noisy_30 =================
+    \multicolumn{5}{@{}l}{\textbf{(c) noisy\_30}}\\
+    0 & 0.69 & 0.70 & 0.69 & 69 \\
+    1 & 0.70 & 0.69 & 0.70 & 71 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}}     & \textbf{0.69} & 140 \\
+    \textbf{Macro avg}    & 0.69 & 0.69 & 0.69 & 140 \\
+    \textbf{Weighted avg} & 0.69 & 0.69 & 0.69 & 140 \\
+  \end{longtable}
+
+  \item \textbf{Arbol de decisión.}
+  Se buscó la mejor configuración de hiperparámetros en el mismo marco de los anteriores escenarios (ver \Cref{tab:param_dt_sc1}). Con 
+  base en esta busqueda se obtuvieron las siguientes mejores configuraciones de hiperparámetros para cada dataset:
+
+  \begin{table}[htbp]
+    \centering\small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabularx}{\linewidth}{@{}l c c c c@{}}
+      \toprule
+      \textbf{Dataset} & \texttt{max\_depth} & \texttt{min\_samples\_leaf} & \texttt{min\_samples\_split}\\
+      \midrule
+      \texttt{clean}     & \texttt{None} & 1 & 2\\
+      \texttt{noisy\_10} & 5             & 2 & 2\\
+      \texttt{noisy\_30} & 5             & 4 & 2\\
+      \bottomrule
+    \end{tabularx}
+    \caption{Mejores hiperparámetros Árbol de decisión SC3.}
+    \label{tab:best_hparams_dt_sc3}
+  \end{table}
+
+  Respecto al desempeño obtenido en cada uno de los modelos se tienen los siguientes resultados:
+
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{longtable}{@{}lcccc@{}}
+    \toprule
+    \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+    \midrule
+    \endfirsthead
+
+    \toprule
+    \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+    \midrule
+    \endhead
+
+    \midrule
+    \multicolumn{5}{r}{\emph{Continúa en la siguiente página}} \\
+    \endfoot
+
+    \bottomrule
+    \caption{Reportes de clasificación Árbol de decisión SC3.}
+    \label{tab:reportes_clasificacion_dt_sc3}
+    \endlastfoot
+
+    % ================= clean =================
+    \multicolumn{5}{@{}l}{\textbf{(a) clean}}\\
+    0 & 1.00 & 1.00 & 1.00 & 70 \\
+    1 & 1.00 & 1.00 & 1.00 & 70 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}}     & \textbf{1.00} & 140 \\
+    \textbf{Macro avg}    & 1.00 & 1.00 & 1.00 & 140 \\
+    \textbf{Weighted avg} & 1.00 & 1.00 & 1.00 & 140 \\
+    \addlinespace[0.8em]
+
+    % ================= noisy_10 =================
+    \multicolumn{5}{@{}l}{\textbf{(b) noisy\_10}}\\
+    0 & 0.90 & 0.86 & 0.88 & 71 \\
+    1 & 0.86 & 0.90 & 0.88 & 69 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}}     & \textbf{0.88} & 140 \\
+    \textbf{Macro avg}    & 0.88 & 0.88 & 0.88 & 140 \\
+    \textbf{Weighted avg} & 0.88 & 0.88 & 0.88 & 140 \\
+    \addlinespace[0.8em]
+
+    % ================= noisy_30 =================
+    \multicolumn{5}{@{}l}{\textbf{(c) noisy\_30}}\\
+    0 & 0.63 & 0.59 & 0.61 & 69 \\
+    1 & 0.63 & 0.66 & 0.64 & 71 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}}     & \textbf{0.63} & 140 \\
+    \textbf{Macro avg}    & 0.63 & 0.63 & 0.63 & 140 \\
+    \textbf{Weighted avg} & 0.63 & 0.63 & 0.63 & 140 \\
+  \end{longtable}
+
+  \item \textbf{SVM.}
+  Para este clasificador se buscó la mejor configuración de hiperparámetros probando los mismos valores del 
+  anterior escenario (ver \Cref{tab:param_svm_sc2}). Los mejores hiperparámetros encontrados para cada dataset, 
+  fueron los siguientes:
+
+  \begin{table}[htbp]
+    \centering\small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabularx}{\linewidth}{@{}l c c l c@{}}
+      \toprule
+      \textbf{Dataset} & \texttt{C} & \texttt{gamma} & \texttt{kernel} \\
+      \midrule
+      \texttt{clean}     & 1 & \texttt{scale} & \texttt{rbf}\\
+      \texttt{noisy\_10} & 1 & \texttt{scale} & \texttt{rbf}\\
+      \texttt{noisy\_30} & 1 & \texttt{scale} & \texttt{rbf}\\
+      \bottomrule
+    \end{tabularx}
+    \caption{Mejores hiperparámetros encontrados para SVM SC3.}
+    \label{tab:best_hparams_svm_sc3}
+  \end{table}
+  
+  Con los mejores hiperparámetros encontrados, se obtuvieron los siguientes resultados:
+
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{longtable}{@{}lcccc@{}}
+    \toprule
+    \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+    \midrule
+    \endfirsthead
+
+    \toprule
+    \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+    \midrule
+    \endhead
+
+    \midrule
+    \multicolumn{5}{r}{\emph{Continúa en la siguiente página}} \\
+    \endfoot
+
+    \bottomrule
+    \caption{Reportes de clasificación SVM SC3.}
+    \label{tab:reportes_clasificacion_svm_sc3}
+    \endlastfoot
+
+    % ================= clean =================
+    \multicolumn{5}{@{}l}{\textbf{(a) clean}}\\
+    0 & 1.00 & 1.00 & 1.00 & 70 \\
+    1 & 1.00 & 1.00 & 1.00 & 70 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}}     & \textbf{1.00} & 140 \\
+    \textbf{Macro avg}    & 1.00 & 1.00 & 1.00 & 140 \\
+    \textbf{Weighted avg} & 1.00 & 1.00 & 1.00 & 140 \\
+    \addlinespace[0.8em]
+
+    % ================= noisy_10 =================
+    \multicolumn{5}{@{}l}{\textbf{(b) noisy\_10}}\\
+    0 & 0.92 & 0.86 & 0.89 & 71 \\
+    1 & 0.86 & 0.93 & 0.90 & 69 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}}     & \textbf{0.89} & 140 \\
+    \textbf{Macro avg}    & 0.89 & 0.89 & 0.89 & 140 \\
+    \textbf{Weighted avg} & 0.89 & 0.89 & 0.89 & 140 \\
+    \addlinespace[0.8em]
+
+    % ================= noisy_30 =================
+    \multicolumn{5}{@{}l}{\textbf{(c) noisy\_30}}\\
+    0 & 0.69 & 0.70 & 0.69 & 69 \\
+    1 & 0.70 & 0.69 & 0.70 & 71 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}} & \textbf{0.69} & 140 \\
+    \textbf{Macro avg}    & 0.69 & 0.69 & 0.69 & 140 \\
+    \textbf{Weighted avg} & 0.69 & 0.69 & 0.69 & 140 \\
+  \end{longtable}
+
+   \item \textbf{MLP.}
+   Para este clasificador se buscó la mejor configuración de hiperparámetros probando con los siguientes valores:
+
+   Solo se usó un solo optimizador de pesos, conforme lo sugirió la IA de Colab. Con base en esta busqueda se obtuvieron 
+   las siguientes mejores configuraciones de hiperparámetros para cada dataset:
+
+  \begin{table}[htbp]
+    \centering\small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabularx}{\linewidth}{@{}l l l l c c c c@{}}
+      \toprule
+      \textbf{Dataset} & \texttt{hidden\_layer\_sizes} & \texttt{activation} & \texttt{solver} & \texttt{alpha} & \texttt{learning\_rate\_init} & \texttt{max\_iter}\\
+      \midrule
+      \texttt{clean}     & \texttt{(50,)}    & \texttt{tanh} & \texttt{adam} & 0.0001 & 0.01  & 200\\
+      \texttt{noisy\_10} & \texttt{(50, 50)} & \texttt{tanh} & \texttt{adam} & 0.001  & 0.01  & 500\\
+      \texttt{noisy\_30} & \texttt{(50, 50)} & \texttt{relu} & \texttt{adam} & 0.001  & 0.01  & 200\\
+      \bottomrule
+    \end{tabularx}
+    \caption{Mejores hiperparámetros encontrados para MLP SC3.}
+    \label{tab:best_hparams_mlp_sc3}
+  \end{table}
+
+   Con la configuraciones de hiperparámetros encontradas, se obtuvieron los siguientes resultados:
+
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{longtable}{@{}lcccc@{}}
+    \toprule
+    \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+    \midrule
+    \endfirsthead
+
+    \toprule
+    \textbf{Clase} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+    \midrule
+    \endhead
+
+    \midrule
+    \multicolumn{5}{r}{\emph{Continúa en la siguiente página}} \\
+    \endfoot
+
+    \bottomrule
+    \caption{Reportes de clasificación del MLP SC3.}
+    \label{tab:reportes_clasificacion_mlp_sc3}
+    \endlastfoot
+
+    % ================= clean =================
+    \multicolumn{5}{@{}l}{\textbf{(a) clean}}\\
+    0 & 0.93 & 0.89 & 0.91 & 70 \\
+    1 & 0.89 & 0.93 & 0.91 & 70 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}}     & \textbf{0.91} & 140 \\
+    \textbf{Macro avg}    & 0.91 & 0.91 & 0.91 & 140 \\
+    \textbf{Weighted avg} & 0.91 & 0.91 & 0.91 & 140 \\
+    \addlinespace[0.8em]
+
+    % ================= noisy_10 =================
+    \multicolumn{5}{@{}l}{\textbf{(b) noisy\_10}}\\
+    0 & 0.81 & 0.79 & 0.80 & 71 \\
+    1 & 0.79 & 0.81 & 0.80 & 69 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}}     & \textbf{0.8} & 140 \\
+    \textbf{Macro avg}    & 0.80 & 0.80 & 0.80 & 140 \\
+    \textbf{Weighted avg} & 0.80 & 0.80 & 0.80 & 140 \\
+    \addlinespace[0.8em]
+
+    % ================= noisy_30 =================
+    \multicolumn{5}{@{}l}{\textbf{(c) noisy\_30}}\\
+    0 & 0.70 & 0.67 & 0.68 & 69 \\
+    1 & 0.69 & 0.72 & 0.70 & 71 \\
+    \midrule
+    \multicolumn{3}{l}{\textbf{Accuracy}}     & \textbf{0.69} & 140 \\
+    \textbf{Macro avg}    & 0.69 & 0.69 & 0.69 & 140 \\
+    \textbf{Weighted avg} & 0.69 & 0.69 & 0.69 & 140 \\
+  \end{longtable}
+
+  \item \textbf{Análisis de resultados.}
+  
+  En este escenario, el aspecto clave a analizar fue el ruido introducido en las etiquetas de etiquetas: con datos limpios, 
+  los cuatro modelos demarcan una frontera nítida y aciertan prácticamente todo, con 10\% de ruido el desempeño baja de forma 
+  moderada y los mejores ajustes “se suavizan”, con 30\% de ruido la caída es notoria y los modelos convergen a resultados medios 
+  porque la señal contiene contradicciones. En estos casos ayudan más la regularización y márgenes amplios (SVM/MLP), el suavizado 
+  en k-NN y el control de profundidad del Árbol.
+
+  La \Cref{fig:barplot_sc3} muestra el desempeño de los modelos ejecutados.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{model_accuracy_vs_noise_level_barplot.png}
+    \caption{Desempeño modelos SC3.}
+    \label{fig:barplot_sc3}
+  \end{figure}
+
+  \end{enumerate}
+
+\section{Discusión de nuestro reciente trabajo sobre LLM}
+Elegí el artículo \href{https://arxiv.org/pdf/2507.22900v2}{New Kid in the Classroom: Exploring Student 
+Perceptions of AI Coding Assistants} con base en que soy un desarrollador de software que recientemente 
+empezó a desarrollar, y por lo tanto, no me he formado en esta área sin la existencia y asistencia de la 
+Inteligencia Artificial (IA), me gustaría indagar como se puede hacer uso de la IA de una manera propiada 
+sin incurrir en una dependencia de la IA, o en no aprender apropiadamente los conceptos. A continuación, 
+dejo mis impresiones sobre lo que considero podrían ser nuevas propuestas de investigación con base en la 
+lectura del artículo mencionado.
+
+\begin{enumerate}
+  \item \textbf{Análisis del aprendizaje con IA.} 
+  \textit{Hipótesis:} la IA acelera el aprendizaje inicial, pero puede reducir la verdadera captura y 
+  retención del conocimiento cuando se retira. 
+
+  \item \textbf{Como pensar con la IA.} 
+  \textit{Hipótesis:} guiar el uso de IA hacia la explicación, la crítica y las preguntas, mejora la 
+  comprensión y autonomía frente a la simple solicitud de tareas. 
+\end{enumerate}
 \end{document}
