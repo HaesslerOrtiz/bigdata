@@ -1,0 +1,100 @@
+Escenario 1: Binario vs. Clasificación multiclase
+
+1. Generar los siguientes tres datasets (cada 1 con 1000):
+
+- Con dos clases
+- Con cinco clases
+- Con veinte clases
+
+NOTA: Los datasets deben ser de tipo 'Blob'. Son datasets que se distribuyen como puntos en un 
+plano cartesiano, y cada clase agremia sus puntos en una región del espacio cartesiano.
+
+Generar un histograma para cada dataset que permita visualizar la frecuencia de cada una de las clases.
+
+Una vez generados los datasets dividir cada uno en dataset de:
+
+- Entrenamiento
+- Desarrollo
+- Test o prueba
+
+2. Considerar clasificadores como:
+
+- K-NN
+- Árbol de decisión
+- SVM
+- MLP
+
+Probar con diferentes hiperparámetros (por ejemplo, k, profundidad del árbol, número de épocas, 
+número de neuronas y capas ocultas). Para esto se puede usar 'grid search' o algún otro método.
+
+3. Comparar el desempeño de los diferentes clasificadores con métricas como:
+
+- Exactitud
+- Precisión
+- Recall
+- F1-score
+- Matriz de confusión
+
+Visualizar las fronteras de decisión de los clasificadores para entender como separan las clases.
+
+"Discutir el impacto de la distribución de clases en el desempeño del modelo"
+
+-----------------------------------------------------------------------------------------
+
+Escenario 2: Grandes datasets vs Pequeños datasets
+
+1. Generar cinco datasets con las mismas características (variables) con cuatro etiquetas/clases y variar 
+sus tamaños de muestra de acuerdo a 10^2, 10^3, 10^4, 10^5, y 10^6. Luego, dividir el dataset:
+
+- Entrenamiento
+- Desarrollo
+- Test o prueba
+
+NOTA: Los datasets deben ser de tipo 'Gaussian Quartiles'. Son datasets que se distribuyen como puntos de un 
+plano cartesiano, y cada clase agremia sus puntos en una región del espacio cartesiano de una manera concéntrica, 
+cada circulo se aleja de la media, es decir, del origen de coordenadas.
+
+2. Considerar clasificadores como:
+
+- K-NN
+- Árbol de decisión
+- SVM
+- MLP
+
+Probar con diferentes hiperparámetros (por ejemplo, k, profundidad del árbol, número de épocas, número de neuronas 
+y capas ocultas). Para esto se puede usar 'grid search' o algún otro método.
+
+3. Comparar el desempeño de los diferentes modelos en cada Dataset. Generar visualizaciones tales como diagrama de 
+barras, mapas de calor y gráficos de radar para mostrar el desempeño de los modelos.
+
+"Identificar cuales modelos se ajustan mejor y discutir el impacto de la disponibilidad de datos en el desempeño de los modelos".
+
+-----------------------------------------------------------------------------------------
+
+Escenario 3: Dataset limpio vs Dataset ruidoso
+
+1. Crear un dataset binario (de dos clases 0 y 1) con un tamaño de mil registros. Luego, utilizar diferentes tasas 
+de corrupción sobre el 5%, 10%, 20% y 30% del tamaño de la muestra. Luego, dividir el dataset:
+
+- Entrenamiento
+- Desarrollo
+- Test o prueba
+
+NOTA: Los datasets deben ser de tipo 'Moons'. Son datasets que se distribuyen como puntos de un plano cartesiano, y cada 
+clase agremia sus puntos en una región del espacio de de forma que se podría considerar espiral
+
+
+2. Considerar clasificadores como:
+
+- K-NN
+- Árbol de decisión
+- SVM
+- MLP
+
+Probar con diferentes hiperparámetros (por ejemplo, k, profundidad del árbol, número de épocas, número de neuronas y 
+capas ocultas). Para esto se puede usar 'grid search' o algún otro método.
+
+3. Comparar el desempeño de los diferentes modelos en cada Dataset. Generar visualizaciones tales como diagrama de barras, 
+mapas de calor y gráficos de radar para mostrar el desempeño de los modelos.
+
+"Identificar la tolerancia de al ruido de todos los modelos. Discutir cuales modelos son más robustos al ruido y porqué"
