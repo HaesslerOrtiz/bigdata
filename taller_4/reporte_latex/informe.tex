@@ -127,7 +127,9 @@ del dataset que cse clasifica en 20 clases.
 \subsection{Probando con distintos clasificadores}
 En este y en los siguientes escenarios, se evaluará cómo distintos clasificadores predicen las clases de cada conjunto de datos, 
 explorando los hiperparámetros configurables de cada modelo. Posteriormente, se seleccionará la combinación de hiperparámetros 
-que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy}, \texttt{Recall} y \texttt{F1-Score}.
+que ofrezca el mejor desempeño predictivo según las métricas \texttt{Accuracy}, \texttt{Recall} y \texttt{F1-Score}. Cabe acalarar 
+que fue con el conjunto de validación con el que se encontraron los mejores hiperparámetros en todos los escenarios y para todos 
+los modelos.
 
 \begin{enumerate}
 
@@ -1301,6 +1303,24 @@ en la generación de estos datasets, mantener la proporción de clases del datas
 
    \item \textbf{MLP.}
    Para este clasificador se buscó la mejor configuración de hiperparámetros probando con los siguientes valores:
+
+  \begin{table}[H]
+    \centering\small
+    \setlength{\tabcolsep}{6pt}
+    \begin{tabularx}{\linewidth}{@{}l l X@{}}
+      \toprule
+      \textbf{Parámetro} & \textbf{Descripción} & \textbf{Valores de búsqueda} \\
+      \midrule
+      \texttt{hidden\_layer\_sizes} & Tamaño(s) de la(s) capa(s) oculta(s) & \texttt{(50,)}, \texttt{(100,)}, \texttt{(50, 50)} \\
+      \texttt{activation}           & Función de activación en capas ocultas & \texttt{tanh}, \texttt{relu} \\
+      \texttt{solver}               & Optimizador para los pesos              & \texttt{adam} \\
+      \texttt{alpha}                & Penalización L2 (regularización)        & 0.0001, 0.001 \\
+      \texttt{learning\_rate\_init} & Tasa de aprendizaje inicial             & 0.001, 0.01 \\
+      \bottomrule
+    \end{tabularx}
+    \caption{Espacio de búsqueda de hiperparámetros para \texttt{MLPClassifier}.}
+    \label{tab:param_grid_mlp}
+  \end{table}
 
    Solo se usó un solo optimizador de pesos, conforme lo sugirió la IA de Colab. Con base en esta busqueda se obtuvieron 
    las siguientes mejores configuraciones de hiperparámetros para cada dataset:
