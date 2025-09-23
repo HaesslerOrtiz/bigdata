@@ -1,43 +1,60 @@
 \documentclass[12pt,a4paper]{article}
 
-% IMPORTACIÓN PAQUETES
-% Acentos
+% ===== Codificación y español =====
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-% Idioma español
-\usepackage[spanish]{babel}
-% Insertar imágenes
-\usepackage{graphicx}
-% Subfiguras
-\usepackage{subcaption}
-% Espaciado
-\usepackage{setspace}
-% Comillas inteligentes
-\usepackage{csquotes}
-% Márgenes
+\usepackage[spanish, es-tabla]{babel}
+
+% ===== Márgenes y gráficos =====
 \usepackage{geometry}
 \geometry{margin=2.5cm}
-% Hipervínculos
+\usepackage{graphicx}
+\usepackage{float}        % [H] para fijar figuras/tablas
+\usepackage{subcaption}   % subfiguras
+\usepackage{booktabs}     % tablas más bonitas
+
+% ===== Hipervínculos y referencias =====
 \usepackage{hyperref}
 \hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    citecolor=black,
-    urlcolor=black
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=blue
 }
-% Referencias inteligentes
-\usepackage{cleveref}
 
-% Configuración de cleveref en español
+\usepackage{siunitx}
+\sisetup{
+  output-decimal-marker = {.}, % decimal con punto
+  group-separator = {,},       % miles con coma
+  group-minimum-digits = 4,
+  group-digits = integer,
+  table-number-alignment = center,
+  round-mode = places,
+  detect-all = true            % ignora configuraciones de babel
+}
+
+% Ayuda al manejo de tablas
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{longtable}
+
+% cleveref mejora \ref: escribe "Figura 1", "Tabla 2", etc.
+\usepackage[capitalise,noabbrev]{cleveref}
+
+% Ajuste de nombres en cleveref
 \crefname{figure}{figura}{figuras}
 \Crefname{figure}{Figura}{Figuras}
-\crefname{subfigure}{figura}{figuras}
-\Crefname{subfigure}{Figura}{Figuras}
+\crefname{subfigure}{subfigura}{subfiguras}
+\Crefname{subfigure}{Subfigura}{Subfiguras}
+\crefname{table}{tabla}{tablas}
+\Crefname{table}{Tabla}{Tablas}
+\crefname{equation}{ecuación}{ecuaciones}
+\Crefname{equation}{Ecuación}{Ecuaciones}
+\crefname{section}{sección}{secciones}
+\Crefname{section}{Sección}{Secciones}
 
-% Conjunciones en español
-\AtBeginDocument{\renewcommand{\creflastconjunction}{ y~}}
-\AtBeginDocument{\renewcommand{\crefrangeconjunction}{ a~}}
-\AtBeginDocument{\renewcommand{\crefmiddleconjunction}{, }}
+% Listas más controlables
+\usepackage{enumitem}
 
 % Para no repetir la carpeta de resultados en cada imagen
 \graphicspath{{resultados/}}
@@ -59,9 +76,9 @@
 \section{Descripción del Dataset}
 El conjunto de datos \textit{EDA}, proporcionado por el IDEAM (Instituto de Hidrología, Meteorología y Estudios Ambientales de Colombia), 
 contiene información sobre los cultivos agrícolas registrados en diferentes municipios de Colombia entre los años 2006 y 2018. 
-En total, el dataset incluye aproximadamente 206\,068 registros y diecisiete variables, las cuales se describen en la \cref{tab:campos}:
+En total, el dataset incluye aproximadamente 206068 registros y diecisiete variables, las cuales se describen en la \Cref{tab:campos}:
 
-\begin{table}[]
+\begin{table}[H]
     \centering
     \begin{tabular}{|l|l|l|}
         \hline
@@ -158,8 +175,9 @@ exhaustivo, sino más bien ilustrar cómo realizar un Análisis Exploratorio de 
 en inglés) básico.
 
 
-\begin{table}[]
+\begin{table}[H]
     \centering
+    \small
     \begin{tabular}{|llll|}
         \hline
         \multicolumn{4}{|c|}{\textbf{Tabla de contingencia (filtrada)}}                                                                                \\ \hline
@@ -198,62 +216,6 @@ en inglés) básico.
     \caption{Cantidad de cultivos por departamentos}
     \label{tab:contingencia}
 \end{table}
-
-\begin{figure}[h!]
-    \centering
-    \begin{subfigure}{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{}
-        \caption{Distribución por grupo etario}
-        \label{fig:f1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{}
-        \caption{Nivel educativo más alto alcanzado}
-        \label{fig:f2}
-    \end{subfigure}
-    \caption{Caracterización de la población encuestada}
-\end{figure}
-
-%Las \cref{fig:f3,fig:f4} ayudan a ilustrar esta información:
-
-\begin{figure}[h!]
-    \centering
-    \begin{subfigure}{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{}
-        \caption{Nivel de familiaridad con el término IA}
-        \label{fig:f3}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{}
-        \caption{Capacidad de dar ejemplos de IA}
-        \label{fig:f4}
-    \end{subfigure}
-    \caption{Percepción de familiaridad y ejemplos de IA}
-\end{figure}
-
-\begin{figure}[h!]
-    \centering
-    \begin{subfigure}{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{}
-        \caption{Confianza en los sistemas de IA}
-        \label{fig:f5}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{}
-        \caption{Percepción sobre el uso de datos por parte del gobierno y las empresas}
-        \label{fig:f6}
-    \end{subfigure}
-    \caption{Confianza y percepción sobre uso de datos}
-\end{figure}
 
 % Conclusión
 \section*{Conclusiones}

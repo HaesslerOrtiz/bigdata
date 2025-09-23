@@ -8,3 +8,5 @@ xlrd
 matplotlib
 # Librería avanzada para visualizaciones estadísticas (boxplots, heatmaps, etc.)
 seaborn
+# Librería para para computación científica, aquí se usa para leer archivos .mat (Mathlab)
+scipy
